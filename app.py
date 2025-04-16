@@ -1,4 +1,3 @@
-
 import streamlit as st
 import tempfile
 import os
@@ -12,27 +11,28 @@ st.title("🌿 Greenwashing Detection & Scoring System")
 api_key = st.text_input("🔑 Enter your Gemini API Key", type="password")
 os.environ["GOOGLE_API_KEY"] = api_key
 
-# Upload PDF file
+# Upload ESG PDF report
 uploaded_file = st.file_uploader("📄 Upload an ESG PDF report", type=["pdf"])
 
 if uploaded_file and st.button("🚀 Run Analysis"):
     with st.spinner("Analyzing document..."):
-        # Save uploaded file to a temporary path
+        # Save the uploaded file to a temporary location
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
             tmp_file.write(uploaded_file.read())
             temp_path = tmp_file.name
 
-        # Call backend function from original logic
+        # Call the backend analysis function
         df = evaluate_pdf_with_gemini(temp_path)
 
-        # Extract average scores
-        avg_scores = df[["透明度", "具体性", "完整性", "一致性"]].mean().to_dict()
+        # Calculate average scores for radar chart
+        avg_scores = df[["Transparency", "Specificity", "Completeness", "Consistency"]].mean().to_dict()
 
-        # Plot and display radar chart
+        # Display radar chart
         st.subheader("📊 ESG Radar Chart")
         fig = plot_radar(avg_scores)
         st.pyplot(fig)
 
-        # Show detailed score table
+        # Display detailed scoring results
         st.subheader("📋 Detailed Scoring Table")
         st.dataframe(df)
+
