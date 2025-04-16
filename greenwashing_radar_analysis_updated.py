@@ -15,9 +15,11 @@ import hashlib
 import google.generativeai as genai
 
 # ======= Gemini API 配置 =======
-os.environ["GOOGLE_API_KEY"] = "AIzaSyByxmpPwL7-MThEWMt9x2m-JK4w6bomnks"
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-gemini_model = genai.GenerativeModel("gemini-pro")
+def init_gemini(api_key):
+    os.environ["GOOGLE_API_KEY"] = api_key
+    genai.configure(api_key=api_key)
+    global gemini_model
+    gemini_model = genai.GenerativeModel("gemini-pro")
 
 # ======= 词库设置 =======
 fuzzy_words = [
