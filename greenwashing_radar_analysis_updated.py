@@ -152,13 +152,7 @@ def plot_radar(scores_dict):
     plt.show()
 
 
-# In[12]:
 
 
-# 1. 分析并保存结果
-df = evaluate_pdf_fast("Sanofi_2023_esg.pdf", save_excel=True)
 
-# 2. 可视化平均分
-avg_scores = df[["Transparency", "Specificity", "Completeness", "Consistency"]].mean().to_dict()
-plot_radar(avg_scores)
 
