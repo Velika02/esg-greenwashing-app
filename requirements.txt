@@ -1,1 +1,8 @@
 streamlit
+PyPDF2
+pandas
+matplotlib
+google-generativeai
+scikit-learn
+openai
+plotly
