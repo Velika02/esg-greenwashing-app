@@ -153,7 +153,8 @@ def plot_radar(scores_dict):
     plt.tight_layout()
     plt.show()
 
-
+def evaluate_pdf_with_gemini(pdf_path):
+    return evaluate_pdf_fast(pdf_path)
 
 
 
